@@ -11,7 +11,7 @@ import GLKit
 
 class FilteredImageCell: UICollectionViewCell {
     static let reuseIdentifier = String(FilteredImageCell.self)
-    
+
     var eaglContext: EAGLContext!
     var ciContext: CIContext!
     
