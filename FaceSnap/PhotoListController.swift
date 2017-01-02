@@ -12,12 +12,12 @@ import CoreData
 class PhotoListController: UIViewController {
     
     lazy var cameraButton: UIButton = {
-        let button = UIButton(type: .System)
-        button.setTitle("Camera", forState: .Normal)
-        button.tintColor = .whiteColor()
+        let button = UIButton(type: .system)
+        button.setTitle("Camera", for: UIControlState())
+        button.tintColor = .white
         button.backgroundColor = UIColor(red: 254/255.0, green: 123/255.0, blue: 135/255.0, alpha: 1.0)
         
-        button.addTarget(self, action: #selector(PhotoListController.presentImagePickerController), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(PhotoListController.presentImagePickerController), for: .touchUpInside)
         
         return button
     }()
@@ -35,15 +35,15 @@ class PhotoListController: UIViewController {
     lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         
-        let screenWidth = UIScreen.mainScreen().bounds.size.width
+        let screenWidth = UIScreen.main.bounds.size.width
         let paddingDistance: CGFloat = 16.0
         let itemSize = (screenWidth - paddingDistance)/2.0
         
         collectionViewLayout.itemSize = CGSize(width: itemSize, height: itemSize)
         
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: collectionViewLayout)
-        collectionView.backgroundColor = .whiteColor()
-        collectionView.registerClass(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
+        collectionView.backgroundColor = .white
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
         
         return collectionView
     }()
@@ -65,21 +65,21 @@ class PhotoListController: UIViewController {
         view.addSubview(cameraButton)
         cameraButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activateConstraints([
-            collectionView.leftAnchor.constraintEqualToAnchor(view.leftAnchor),
-            collectionView.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor),
-            collectionView.rightAnchor.constraintEqualToAnchor(view.rightAnchor),
-            collectionView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
-            cameraButton.leftAnchor.constraintEqualToAnchor(view.leftAnchor),
-            cameraButton.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
-            cameraButton.rightAnchor.constraintEqualToAnchor(view.rightAnchor),
-            cameraButton.heightAnchor.constraintEqualToConstant(56.0)
+        NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            cameraButton.leftAnchor.constraint(equalTo: view.leftAnchor),
+            cameraButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            cameraButton.rightAnchor.constraint(equalTo: view.rightAnchor),
+            cameraButton.heightAnchor.constraint(equalToConstant: 56.0)
         ])
     }
     
     // MARK: - Image Picker Controller
 
-    @objc private func presentImagePickerController() {
+    @objc fileprivate func presentImagePickerController() {
         mediaPickerManager.presentImagePickerController(animated: true)
     }
 }
@@ -87,16 +87,16 @@ class PhotoListController: UIViewController {
 
 // MARK: - MediaPickerManagerDelegate
 extension PhotoListController: MediaPickerManagerDelegate {
-    func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
+    func mediaPickerManager(_ manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
         
-        let eaglContext = EAGLContext(API: .OpenGLES2)
-        let ciContext = CIContext(EAGLContext: eaglContext)
+        let eaglContext = EAGLContext(api: .openGLES2)
+        let ciContext = CIContext(eaglContext: eaglContext!)
         
-        let photoFilterController = PhotoFilterController(image: image, context: ciContext, eaglContext: eaglContext)
+        let photoFilterController = PhotoFilterController(image: image, context: ciContext, eaglContext: eaglContext!)
         let navigationController = UINavigationController(rootViewController: photoFilterController)
         
         manager.dismissImagePickerController(animated: true) {
-            self.presentViewController(navigationController, animated: true, completion: nil)
+            self.present(navigationController, animated: true, completion: nil)
         }
     }
 }
@@ -104,12 +104,12 @@ extension PhotoListController: MediaPickerManagerDelegate {
 // MARK: - Navigation 
 extension PhotoListController {
     
-    private func setupNavigationBar() {
-        let sortTagsButton = UIBarButtonItem(title: "Tags", style: .Plain, target: self, action: #selector(PhotoListController.presentSortController))
+    fileprivate func setupNavigationBar() {
+        let sortTagsButton = UIBarButtonItem(title: "Tags", style: .plain, target: self, action: #selector(PhotoListController.presentSortController))
         navigationItem.setRightBarButtonItems([sortTagsButton], animated: true)
     }
     
-    @objc private func presentSortController() {
+    @objc fileprivate func presentSortController() {
         let tagDataSource = SortableDataSource<Tag>(fetchRequest: Tag.allTagsRequest, managedObjectContext: CoreDataController.sharedInstance.managedObjectContext)
         
         let sortItemSelector = SortItemSelector(sortItems: tagDataSource.results)
@@ -125,7 +125,7 @@ extension PhotoListController {
                     predicates.append(predicate)
                 }
                 
-                let compoundPredicate = NSCompoundPredicate(type: .OrPredicateType, subpredicates: predicates)
+                let compoundPredicate = NSCompoundPredicate(type: .or, subpredicates: predicates)
                 self.dataSource.performFetch(withPredicate: compoundPredicate)
             } else {
                 self.dataSource.performFetch(withPredicate: nil)
@@ -134,7 +134,7 @@ extension PhotoListController {
         
         let navigationController = UINavigationController(rootViewController: sortController)
         
-        presentViewController(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: true, completion: nil)
     }
 }
 

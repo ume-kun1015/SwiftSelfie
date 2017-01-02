@@ -22,30 +22,30 @@ class LocationManager: NSObject {
         getPermission()
     }
     
-    private func getPermission() {
-        if CLLocationManager.authorizationStatus() == .NotDetermined {
+    fileprivate func getPermission() {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
             manager.requestWhenInUseAuthorization()
         }
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
             manager.requestLocation()
         }
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Unresolved error  \(error), \(error.userInfo)")
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
             if let onLocationFix = self.onLocationFix {
-                onLocationFix(placemarks?.first, error)
+                onLocationFix(placemarks?.first, error as NSError?)
             }
         }
         

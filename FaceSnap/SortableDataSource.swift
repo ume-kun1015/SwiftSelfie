@@ -15,15 +15,15 @@ protocol CustomTitleConvertible {
 
 extension Tag: CustomTitleConvertible {}
 
-class SortableDataSource<SortType: CustomTitleConvertible where SortType: NSManagedObject>: NSObject, UITableViewDataSource {
+class SortableDataSource<SortType: CustomTitleConvertible>: NSObject, UITableViewDataSource where SortType: NSManagedObject {
     
-    private let fetchedResultsController: NSFetchedResultsController
+    fileprivate let fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     
     var results: [SortType] {
         return fetchedResultsController.fetchedObjects as! [SortType]
     }
     
-    init(fetchRequest: NSFetchRequest, managedObjectContext moc: NSManagedObjectContext) {
+    init(fetchRequest: NSFetchRequest<NSFetchRequestResult>, managedObjectContext moc: NSManagedObjectContext) {
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         
         super.init()
@@ -41,11 +41,11 @@ class SortableDataSource<SortType: CustomTitleConvertible where SortType: NSMana
     
     // MARK: UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
         case 1: return fetchedResultsController.fetchedObjects?.count ?? 0
@@ -53,14 +53,14 @@ class SortableDataSource<SortType: CustomTitleConvertible where SortType: NSMana
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "sortableItemCell")
-        cell.selectionStyle = .None
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "sortableItemCell")
+        cell.selectionStyle = .none
         
         switch (indexPath.section, indexPath.row) {
         case (0,0) :
             cell.textLabel?.text = "All \(SortType.self)s"
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         case (1,_):
             
             guard let sortItem = fetchedResultsController.fetchedObjects?[indexPath.row] as? SortType else {

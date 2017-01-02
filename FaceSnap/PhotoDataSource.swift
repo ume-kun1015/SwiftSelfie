@@ -11,11 +11,11 @@ import UIKit
 import CoreData
 
 class PhotoDataSource: NSObject {
-    private let collectionView: UICollectionView
-    private let managedObjectContext = CoreDataController.sharedInstance.managedObjectContext
-    private let fetchedResultsController: PhotoFetchedResultsController
+    fileprivate let collectionView: UICollectionView
+    fileprivate let managedObjectContext = CoreDataController.sharedInstance.managedObjectContext
+    fileprivate let fetchedResultsController: PhotoFetchedResultsController
     
-    init(fetchRequest: NSFetchRequest, collectionView: UICollectionView) {
+    init(fetchRequest: NSFetchRequest<NSFetchRequestResult>, collectionView: UICollectionView) {
         self.collectionView = collectionView
         
         self.fetchedResultsController = PhotoFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, collectionView: self.collectionView)
@@ -31,20 +31,20 @@ class PhotoDataSource: NSObject {
 
 // MARK: - UICollectionViewDataSource
 extension PhotoDataSource: UICollectionViewDataSource {
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let section = fetchedResultsController.sections?[section] else { return 0}
         
         return section.numberOfObjects
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoCell.reuseIdentifier, forIndexPath: indexPath) as! PhotoCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseIdentifier, for: indexPath) as! PhotoCell
         
-        let photo = fetchedResultsController.objectAtIndexPath(indexPath) as! Photo
+        let photo = fetchedResultsController.object(at: indexPath) as! Photo
         
         cell.imageView.image = photo.photoImage
         

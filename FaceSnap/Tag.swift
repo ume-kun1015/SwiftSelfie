@@ -12,14 +12,14 @@ import CoreData
 class Tag: NSManagedObject {
     static let entityName = "\(Tag.self)"
     
-    static var allTagsRequest: NSFetchRequest = {
-        let request = NSFetchRequest(entityName: Tag.entityName)
+    static var allTagsRequest: NSFetchRequest = { () -> NSFetchRequest<NSFetchRequestResult> in 
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: Tag.entityName)
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         return request
     }()
     
     class func tag(withTitle title: String) -> Tag {
-        let tag = NSEntityDescription.insertNewObjectForEntityForName(Tag.entityName, inManagedObjectContext: CoreDataController.sharedInstance.managedObjectContext) as! Tag
+        let tag = NSEntityDescription.insertNewObject(forEntityName: Tag.entityName, into: CoreDataController.sharedInstance.managedObjectContext) as! Tag
         
         tag.title = title
         

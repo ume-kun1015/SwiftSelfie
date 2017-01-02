@@ -17,11 +17,11 @@ class PhotoCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activateConstraints([
-            imageView.leftAnchor.constraintEqualToAnchor(contentView.leftAnchor),
-            imageView.topAnchor.constraintEqualToAnchor(contentView.topAnchor),
-            imageView.rightAnchor.constraintEqualToAnchor(contentView.rightAnchor),
-            imageView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor),
+        NSLayoutConstraint.activate([
+            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 }

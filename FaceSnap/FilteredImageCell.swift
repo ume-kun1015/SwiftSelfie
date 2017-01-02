@@ -10,7 +10,7 @@ import UIKit
 import GLKit
 
 class FilteredImageCell: UICollectionViewCell {
-    static let reuseIdentifier = String(FilteredImageCell.self)
+    static let reuseIdentifier = String(describing: FilteredImageCell.self)
 
     var eaglContext: EAGLContext!
     var ciContext: CIContext!
@@ -27,23 +27,23 @@ class FilteredImageCell: UICollectionViewCell {
         contentView.addSubview(glkView)
         glkView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activateConstraints([
-            glkView.topAnchor.constraintEqualToAnchor(contentView.topAnchor),
-            glkView.rightAnchor.constraintEqualToAnchor(contentView.rightAnchor),
-            glkView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor),
-            glkView.leftAnchor.constraintEqualToAnchor(contentView.leftAnchor),
+        NSLayoutConstraint.activate([
+            glkView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            glkView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            glkView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            glkView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
         ])
     }
 }
 
 extension FilteredImageCell: GLKViewDelegate {
     
-    func glkView(view: GLKView, drawInRect rect: CGRect) {
+    func glkView(_ view: GLKView, drawIn rect: CGRect) {
         
         let drawableRectSize = CGSize(width: glkView.drawableWidth, height: glkView.drawableHeight)
-        let drawableRect = CGRect(origin: CGPointZero, size: drawableRectSize)
+        let drawableRect = CGRect(origin: CGPoint.zero, size: drawableRectSize)
         
-        ciContext.drawImage(image, inRect: drawableRect, fromRect: image.extent)
+        ciContext.draw(image, in: drawableRect, from: image.extent)
     }
 }
 

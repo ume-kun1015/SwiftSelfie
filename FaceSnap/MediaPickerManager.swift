@@ -10,13 +10,13 @@ import UIKit
 import MobileCoreServices
 
 protocol MediaPickerManagerDelegate: class {
-    func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage)
+    func mediaPickerManager(_ manager: MediaPickerManager, didFinishPickingImage image: UIImage)
 }
 
 class MediaPickerManager: NSObject {
     
-    private let imagePickerController = UIImagePickerController()
-    private let presentingViewController: UIViewController
+    fileprivate let imagePickerController = UIImagePickerController()
+    fileprivate let presentingViewController: UIViewController
     
     weak var delegate: MediaPickerManagerDelegate?
     
@@ -25,28 +25,28 @@ class MediaPickerManager: NSObject {
         super.init()
         
         imagePickerController.delegate = self
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            imagePickerController.sourceType = .Camera
-            imagePickerController.cameraDevice = .Front
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerController.sourceType = .camera
+            imagePickerController.cameraDevice = .front
         } else {
-            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.sourceType = .photoLibrary
         }
         
         imagePickerController.mediaTypes = [kUTTypeImage as String]
     }
     
-    func presentImagePickerController(animated animated: Bool) {
-        presentingViewController.presentViewController(imagePickerController, animated: animated, completion: nil)
+    func presentImagePickerController(animated: Bool) {
+        presentingViewController.present(imagePickerController, animated: animated, completion: nil)
     }
     
-    func dismissImagePickerController(animated animated: Bool, completion: (() -> Void)) {
-        imagePickerController.dismissViewControllerAnimated(animated, completion: completion)
+    func dismissImagePickerController(animated: Bool, completion: @escaping (() -> Void)) {
+        imagePickerController.dismiss(animated: animated, completion: completion)
     }
 
 }
 
 extension MediaPickerManager: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         delegate?.mediaPickerManager(self, didFinishPickingImage: image)

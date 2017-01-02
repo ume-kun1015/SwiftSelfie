@@ -8,17 +8,17 @@
 import UIKit
 import CoreData
 
-class PhotoSortListController<SortType: CustomTitleConvertible where SortType: NSManagedObject>: UITableViewController {
+class PhotoSortListController<SortType: CustomTitleConvertible>: UITableViewController where SortType: NSManagedObject {
     
     let dataSource: SortableDataSource<SortType>
     let sortItemSelector: SortItemSelector<SortType>
     
-    var onSortSelection: (Set<SortType> -> Void)?
+    var onSortSelection: ((Set<SortType>) -> Void)?
     
     init(dataSource: SortableDataSource<SortType>, sortItemSelector: SortItemSelector<SortType>) {
         self.dataSource = dataSource
         self.sortItemSelector = sortItemSelector
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
         
         tableView.dataSource = dataSource
         tableView.delegate = sortItemSelector
@@ -39,16 +39,16 @@ class PhotoSortListController<SortType: CustomTitleConvertible where SortType: N
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupNavigation() {
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(PhotoSortListController.dismissPhotoSortListController))
+    fileprivate func setupNavigation() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(PhotoSortListController.dismissPhotoSortListController))
         
         navigationItem.rightBarButtonItem = doneButton
     }
     
-    @objc private func dismissPhotoSortListController() {
+    @objc fileprivate func dismissPhotoSortListController() {
         guard let onSortSelection = onSortSelection else { return }
         onSortSelection(sortItemSelector.checkedItems)
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 

@@ -12,7 +12,7 @@ import UIKit
 
 final class FilteredImageBuilder {
     
-    private struct PhotoFilter {
+    fileprivate struct PhotoFilter {
         
         static let ColorClamp = "CIColorClamp"
         static let ColorControls = "CIColorControls"
@@ -45,8 +45,8 @@ final class FilteredImageBuilder {
         }
     }
     
-    private let image: UIImage
-    private let context: CIContext
+    fileprivate let image: UIImage
+    fileprivate let context: CIContext
     
     init(context: CIContext, image: UIImage) {
         self.context = context
@@ -61,14 +61,14 @@ final class FilteredImageBuilder {
         return filters.map { image(self.image, withFilter: $0) }
     }
     
-    func image(image: UIImage, withFilter filter: CIFilter) -> CIImage {
-        let inputImage = image.CIImage ?? CIImage(image: image)!
+    func image(_ image: UIImage, withFilter filter: CIFilter) -> CIImage {
+        let inputImage = image.ciImage ?? CIImage(image: image)!
         
         filter.setValue(inputImage, forKey: kCIInputImageKey)
         
         let outputImage = filter.outputImage!
         
-        return outputImage.imageByCroppingToRect(inputImage.extent)
+        return outputImage.cropping(to: inputImage.extent)
     }
 }
 

@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class PhotoFetchedResultsController: NSFetchedResultsController, NSFetchedResultsControllerDelegate {
+class PhotoFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>, NSFetchedResultsControllerDelegate {
     
-    private let collectionView: UICollectionView
+    fileprivate let collectionView: UICollectionView
     
-    init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, collectionView: UICollectionView) {
+    init(fetchRequest: NSFetchRequest<NSFetchRequestResult>, managedObjectContext: NSManagedObjectContext, collectionView: UICollectionView) {
         
         self.collectionView = collectionView
         
@@ -32,14 +32,14 @@ class PhotoFetchedResultsController: NSFetchedResultsController, NSFetchedResult
     }
     
     func performFetch(withPredicate predicate: NSPredicate?) {
-        NSFetchedResultsController.deleteCacheWithName(nil)
+        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: nil)
         fetchRequest.predicate = predicate
         executeFetch()
     }
     
     // MARK: - NSFetchedResultsControllerDelegate
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         collectionView.reloadData()
     }
 }
