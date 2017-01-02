@@ -37,7 +37,7 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Unresolved error  \(error), \(error.userInfo)")
+        print("Unresolved error  \(error), \(error._userInfo)")
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
