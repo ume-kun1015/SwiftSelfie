@@ -40,7 +40,7 @@ class PhotoFilterController: UIViewController {
         flowLayout.itemSize = CGSize(width: 100, height: 100)
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        collectionView.backgroundColor = .blue
+        collectionView.backgroundColor = .white
         collectionView.register(FilteredImageCell.self, forCellWithReuseIdentifier: FilteredImageCell.reuseIdentifier)
         
         collectionView.dataSource = self
