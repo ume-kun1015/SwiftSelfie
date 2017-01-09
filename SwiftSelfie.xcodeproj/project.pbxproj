@@ -42,13 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BEA54E451D4C4EC50011AA36 /* FaceSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA54E451D4C4EC50011AA36 /* SwiftSelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA54E481D4C4EC50011AA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEA54E4A1D4C4EC50011AA36 /* PhotoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListController.swift; sourceTree = "<group>"; };
 		BEA54E4F1D4C4EC50011AA36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEA54E521D4C4EC50011AA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEA54E541D4C4EC50011AA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEA54E591D4C4EC50011AA36 /* FaceSnapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceSnapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA54E591D4C4EC50011AA36 /* SwiftSelfieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSelfieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA54E5D1D4C4EC50011AA36 /* FaceSnapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceSnapTests.swift; sourceTree = "<group>"; };
 		BEA54E5F1D4C4EC50011AA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEA54E681D4C569B0011AA36 /* MediaPickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerManager.swift; sourceTree = "<group>"; };
@@ -100,8 +100,8 @@
 		BEA54E461D4C4EC50011AA36 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEA54E451D4C4EC50011AA36 /* FaceSnap.app */,
-				BEA54E591D4C4EC50011AA36 /* FaceSnapTests.xctest */,
+				BEA54E451D4C4EC50011AA36 /* SwiftSelfie.app */,
+				BEA54E591D4C4EC50011AA36 /* SwiftSelfieTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,9 +179,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BEA54E441D4C4EC50011AA36 /* FaceSnap */ = {
+		BEA54E441D4C4EC50011AA36 /* SwiftSelfie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEA54E621D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "FaceSnap" */;
+			buildConfigurationList = BEA54E621D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "SwiftSelfie" */;
 			buildPhases = (
 				BEA54E411D4C4EC50011AA36 /* Sources */,
 				BEA54E421D4C4EC50011AA36 /* Frameworks */,
@@ -191,14 +191,14 @@
 			);
 			dependencies = (
 			);
-			name = FaceSnap;
+			name = SwiftSelfie;
 			productName = FaceSnap;
-			productReference = BEA54E451D4C4EC50011AA36 /* FaceSnap.app */;
+			productReference = BEA54E451D4C4EC50011AA36 /* SwiftSelfie.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BEA54E581D4C4EC50011AA36 /* FaceSnapTests */ = {
+		BEA54E581D4C4EC50011AA36 /* SwiftSelfieTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEA54E651D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "FaceSnapTests" */;
+			buildConfigurationList = BEA54E651D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "SwiftSelfieTests" */;
 			buildPhases = (
 				BEA54E551D4C4EC50011AA36 /* Sources */,
 				BEA54E561D4C4EC50011AA36 /* Frameworks */,
@@ -209,9 +209,9 @@
 			dependencies = (
 				BEA54E5B1D4C4EC50011AA36 /* PBXTargetDependency */,
 			);
-			name = FaceSnapTests;
+			name = SwiftSelfieTests;
 			productName = FaceSnapTests;
-			productReference = BEA54E591D4C4EC50011AA36 /* FaceSnapTests.xctest */;
+			productReference = BEA54E591D4C4EC50011AA36 /* SwiftSelfieTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -236,7 +236,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BEA54E401D4C4EC50011AA36 /* Build configuration list for PBXProject "FaceSnap" */;
+			buildConfigurationList = BEA54E401D4C4EC50011AA36 /* Build configuration list for PBXProject "SwiftSelfie" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -249,8 +249,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BEA54E441D4C4EC50011AA36 /* FaceSnap */,
-				BEA54E581D4C4EC50011AA36 /* FaceSnapTests */,
+				BEA54E441D4C4EC50011AA36 /* SwiftSelfie */,
+				BEA54E581D4C4EC50011AA36 /* SwiftSelfieTests */,
 			);
 		};
 /* End PBXProject section */
@@ -314,7 +314,7 @@
 /* Begin PBXTargetDependency section */
 		BEA54E5B1D4C4EC50011AA36 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BEA54E441D4C4EC50011AA36 /* FaceSnap */;
+			target = BEA54E441D4C4EC50011AA36 /* SwiftSelfie */;
 			targetProxy = BEA54E5A1D4C4EC50011AA36 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -449,7 +449,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.FaceSnapTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceSnap.app/FaceSnap";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftSelfie.app/SwiftSelfie";
 			};
 			name = Debug;
 		};
@@ -462,14 +462,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.FaceSnapTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceSnap.app/FaceSnap";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftSelfie.app/SwiftSelfie";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BEA54E401D4C4EC50011AA36 /* Build configuration list for PBXProject "FaceSnap" */ = {
+		BEA54E401D4C4EC50011AA36 /* Build configuration list for PBXProject "SwiftSelfie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEA54E601D4C4EC50011AA36 /* Debug */,
@@ -478,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEA54E621D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "FaceSnap" */ = {
+		BEA54E621D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "SwiftSelfie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEA54E631D4C4EC50011AA36 /* Debug */,
@@ -487,7 +487,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEA54E651D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "FaceSnapTests" */ = {
+		BEA54E651D4C4EC50011AA36 /* Build configuration list for PBXNativeTarget "SwiftSelfieTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEA54E661D4C4EC50011AA36 /* Debug */,
